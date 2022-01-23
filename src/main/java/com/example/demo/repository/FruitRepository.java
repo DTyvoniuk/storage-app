@@ -7,9 +7,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FruitRepository extends JpaRepository<Fruit, Long> {
     Fruit getFruitsByName(String name);
-
-    default Fruit update(Long id) {
-        Fruit fruit = getById(id);
-        return save(fruit);
-    }
 }

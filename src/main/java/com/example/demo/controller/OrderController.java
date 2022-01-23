@@ -35,6 +35,9 @@ public class OrderController {
         StringBuilder report = new StringBuilder();
         for (FruitRequestDto fruit : fruits) {
             Fruit fruitFromDb = fruitService.getByName(fruit.getName());
+            if (fruitFromDb == null) {
+                throw new RuntimeException("Can't find fruit with name " + fruit.getName());
+            }
             if (fruitFromDb.getQuantity() < fruit.getQuantity()) {
                 throw new RuntimeException("Can't complete order, not enough " + fruit.getName());
             }
